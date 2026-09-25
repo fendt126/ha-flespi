@@ -11,7 +11,6 @@ from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
-    ATTR_BATTERY_LEVEL,
     ATTR_POSITION_ALTITUDE,
     ATTR_POSITION_DIRECTION,
     ATTR_POSITION_HDOP,
@@ -78,17 +77,6 @@ class FlespiDeviceTracker(TrackerEntity):
     def location_accuracy(self) -> int:
         """Return the location accuracy of the device."""
         return self._coordinator.data.get(ATTR_POSITION_HDOP, 0)
-
-    @property
-    def battery_level(self) -> int | None:
-        """Return the battery level of the device."""
-        level = self._coordinator.data.get(ATTR_BATTERY_LEVEL)
-        if level is not None:
-            try:
-                return int(float(level))
-            except (ValueError, TypeError):
-                return None
-        return None
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
