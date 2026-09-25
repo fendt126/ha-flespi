@@ -27,7 +27,7 @@ LEGACY_SUFFIX_MAP: dict[str, str] = {
     "position.altitude": "altitude",
     "position.direction": "direction",
     "position.satellites": "satellites",
-    "battery.voltage": "battery_voltage",
+    "battery.level": "battery_level",
 }
 
 # Translation keys already present in strings.json for the legacy 5 sensors.
@@ -36,7 +36,7 @@ LEGACY_TRANSLATION_KEYS: dict[str, str] = {
     "position.altitude": "altitude",
     "position.direction": "direction",
     "position.satellites": "satellites",
-    "battery.voltage": "battery_voltage",
+    "battery_level": "battery_level",
 }
 
 
@@ -75,7 +75,7 @@ DEFAULT_ENABLED_KEYS: frozenset[str] = frozenset(
         "position.altitude",
         "position.direction",
         "position.satellites",
-        "battery.voltage",
+        "battery_level",
         # Common vehicle telemetry that practically every fleet user wants.
         "fuel.level",
         "engine.ignition.status",
@@ -225,12 +225,12 @@ LEGACY_SENSOR_SPECS: list[FlespiEntitySpec] = [
         state_class=SensorStateClass.MEASUREMENT,
     ),
     FlespiEntitySpec(
-        flespi_key="battery.voltage",
-        unique_suffix="battery_voltage",
-        translation_key="battery_voltage",
-        device_class=SensorDeviceClass.VOLTAGE,
+        flespi_key="battery_level",
+        unique_suffix="battery_level",
+        translation_key="battery_level",
+        device_class=SensorDeviceClass.BATTERY,
         state_class=SensorStateClass.MEASUREMENT,
-        unit=UnitOfElectricPotential.MILLIVOLT,
+        unit="%",
     ),
 ]
 
