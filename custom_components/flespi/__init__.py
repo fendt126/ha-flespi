@@ -219,7 +219,7 @@ def _repair_device_subentry_bindings(
     ent_reg = er.async_get(hass)
     dev_reg = dr.async_get(hass)
 
-    for device in list(dev_reg.devices.values()):
+    for device in homeassistant.helpers.device_registry.async_entries_for_config_entry(dev_reg, config_entry.entry_id):
         if entry.entry_id not in device.config_entries:
             continue
         if entry.entry_id in device.config_entries_subentries:
